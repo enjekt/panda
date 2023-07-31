@@ -1,6 +1,4 @@
 # Panda Vault
-![image](https://github.com/enjekt/panda/assets/3209869/f9cd516a-b043-4cbc-8049-63ecc4515d47)
-
 
 Secure storage of credit card PANs using encipherment provided by the related shannon-engine project. 
 
