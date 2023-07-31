@@ -26,8 +26,11 @@ It is anticipated that an application that works with the Panda Vault will store
 
 In our example, the original credit card PAN is 5513746525703556. The token is 5513740800553556. At first glance they appear the same but there's a critical difference. Note that the BIN, the first set of digits are the same and the last 4 digits are the same, but the middle digits are different. 
 
-PAN | Token
-55137**4652570**3556 |55137**4080055**3556
+ 
+PAN                 | Token
+------------------- | -------------
+55137**4652570**3556|55137**4080055**3556
+
 
 Further, if you run the first number through a Luhn check, it will pass. The token, by contrast, will fail.
 
