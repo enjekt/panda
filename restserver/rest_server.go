@@ -20,8 +20,8 @@ func NewRestServer() {
 	decipherPool = constructDecipherPipeline(10)
 	db.Open()
 	router := mux.NewRouter()
-	router.HandleFunc("/decipher/{token}/{pad}", DecipherHandler)
-	router.HandleFunc("/encipher/{pan}", EncipherHandler)
+	router.HandleFunc("/storepanservice/v1/pan/{token}/{pad}", DecipherHandler)
+	router.HandleFunc("/storepanservice/v1/identifiers/{pan}", EncipherHandler)
 	http.Handle("/", router)
 	srv := &http.Server{
 		Handler: router,
@@ -46,7 +46,7 @@ func EncipherHandler(w http.ResponseWriter, r *http.Request) {
 	pipeline.Execute(p)
 	encipherPool.CheckIn(pipeline)
 	db.Insert(p)
-	fmt.Fprintf(w, "{\n%v\n%v\n}", p.GetToken().String(), p.GetPad())
+	fmt.Fprintf(w, "{\nToken: %v\nPad: %v\n}", p.GetToken().String(), p.GetPad().String())
 
 }
 
@@ -63,7 +63,7 @@ func DecipherHandler(w http.ResponseWriter, r *http.Request) {
 	pipeline.Execute(p)
 	decipherPool.CheckIn(pipeline)
 
-	fmt.Fprintf(w, "{\n%v\n}", p.GetPan().String())
+	fmt.Fprintf(w, "{\nPan: %v\n}", p.GetPan().String())
 }
 
 func constructBin6PlusLast4Pool(number int) pools.PipeLinePool {
