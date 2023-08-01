@@ -1,4 +1,5 @@
 # Panda Vault
+Important Note: Panda Vault will be adding Go-Kit with both REST and gRPC implementations soon.
 
 Secure storage of credit card PANs using encipherment provided by the related shannon-engine project. 
 
