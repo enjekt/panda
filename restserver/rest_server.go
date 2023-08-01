@@ -16,6 +16,7 @@ import (
 var db = database.NewDAO()
 
 func NewRestServer() {
+	log.Println("Starting REST Server...")
 	encipherPool = constructBin6PlusLast4Pool(10)
 	decipherPool = constructDecipherPipeline(10)
 	db.Open()
@@ -25,11 +26,12 @@ func NewRestServer() {
 	http.Handle("/", router)
 	srv := &http.Server{
 		Handler: router,
-		Addr:    "127.0.0.1:8000",
+		Addr:    "localhost:8000",
 		// Good practice: enforce timeouts for servers you create!
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
+	log.Println("Listen on ")
 	log.Fatal(srv.ListenAndServe())
 
 }

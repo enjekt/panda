@@ -1,8 +1,12 @@
 package main
 
-import "panda/restserver"
+import (
+	"log"
+	"panda/restserver"
+)
 
 func main() {
+	log.Println("Starting Panda Service...")
 	restserver.NewRestServer()
 
 }
